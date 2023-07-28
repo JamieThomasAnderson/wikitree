@@ -24,7 +24,7 @@ function SidePanel({ url, setUrl, fetchData, setGraphData, cullingCutoff, clearD
             </div>
 
             <div className='config'>
-                <Button variant='danger' onClick={() => clearData(setGraphData, setSelectedNode)}>🗑</Button>
+                <Button variant='success' onClick={() => clearData(setGraphData, setSelectedNode)}>🗑</Button>
                 
             </div>
         </>

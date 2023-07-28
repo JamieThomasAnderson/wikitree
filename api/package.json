@@ -12,10 +12,12 @@
     "cors": "^2.8.5",
     "debug": "~2.6.9",
     "express": "~4.16.1",
+    "express-rate-limit": "^6.8.0",
     "http-errors": "~1.6.3",
     "jade": "~1.11.0",
     "jlouvain": "^2.0.0",
     "morgan": "~1.9.1",
-    "puppeteer": "^20.7.3"
+    "puppeteer": "^20.7.3",
+    "validator": "^13.9.0"
   }
 }

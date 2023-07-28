@@ -9,7 +9,7 @@ WORKDIR /app
 COPY package*.json ./
 
 # Install the application dependencies
-RUN npm install
+RUN npm install && npm install -g nodemon
 
 # Copy the rest of the application code to the working directory
 COPY . .
@@ -18,4 +18,4 @@ COPY . .
 EXPOSE 3001
 
 # Define the command to run the application
-CMD [ "npm", "start" ]
+CMD [ "nodemon", "start" ]

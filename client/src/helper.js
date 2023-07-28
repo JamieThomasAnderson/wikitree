@@ -1,19 +1,3 @@
-export function fetchData(url, setGraphData, cullingCutoff) {
-    const eventSource = new EventSource(`http://localhost:3001/links?url=${url}`);
-
-    eventSource.onmessage = (event) => {
-        const data = JSON.parse(event.data);
-        const newGraphData = updateGraphData(data, url, setGraphData);
-        setGraphData(newGraphData);
-    };
-
-    eventSource.addEventListener('done', () => {
-        eventSource.close();
-        const prunedGraphData = pruneGraphData(setGraphData, cullingCutoff);
-        setGraphData(prunedGraphData);
-    });
-};
-
 function updateGraphData(data, url, setGraphData) {
     return prevGraphData => {
         const nodes = [...prevGraphData.nodes];
@@ -56,7 +40,7 @@ function processLinks(seenLinks, links, originNode, childNode) {
     }
 }
 
-function pruneGraphData(setGraphData, cullingCutoff) {
+function pruneGraphData(setGraphData, cullingCutoff) { // Remove unary nodes
     return prevGraphData => {
         const nodeConnections = new Map();
         prevGraphData.links.forEach(link => {
@@ -70,6 +54,22 @@ function pruneGraphData(setGraphData, cullingCutoff) {
         return { nodes, links };
     };
 }
+
+export function fetchData(url, setGraphData, cullingCutoff) {
+    const eventSource = new EventSource(`http://localhost:3001/links?url=${url}`);
+
+    eventSource.onmessage = (event) => {
+        const data = JSON.parse(event.data);
+        const newGraphData = updateGraphData(data, url, setGraphData);
+        setGraphData(newGraphData);
+    };
+
+    eventSource.addEventListener('done', () => {
+        eventSource.close();
+        const prunedGraphData = pruneGraphData(setGraphData, cullingCutoff);
+        setGraphData(prunedGraphData);
+    });
+};
 
 export function clearData(setGraphData, setSelectedNode) {
     setGraphData({ nodes: [], links: [] });

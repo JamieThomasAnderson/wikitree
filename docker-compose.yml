@@ -1,0 +1,27 @@
+version: '3.8'
+services:
+  client:
+    build: ./client  # path to your frontend Dockerfile
+    ports:
+      - '3000:3000'  # map your ports as necessary
+    volumes:
+      - type: bind
+        source: ./client
+        target: /app
+      - /app/node_modules  # this will use the node_modules from inside the container
+    environment:
+      - NODE_ENV=development  # set any environment variables
+      - CHOKIDAR_USEPOLLING=true
+
+  api:
+    build: ./api  # path to your backend Dockerfile
+    ports:
+      - '3001:3001'  # map your ports as necessary
+    volumes:
+      - type: bind
+        source: ./api
+        target: /app
+      - /app/node_modules  # this will use the node_modules from inside the container
+    environment:
+      - NODE_ENV=development  # set any environment variables
+      - CHOKIDAR_USEPOLLING=true  # Enable polling for backend as well

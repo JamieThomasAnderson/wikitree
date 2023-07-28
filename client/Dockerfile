@@ -3,7 +3,7 @@
 FROM node
 
 # Set the working directory in the container to /app
-WORKDIR /usr/src/api
+WORKDIR /app
 
 # Copy package.json and package-lock.json to the working directory
 COPY package*.json ./
