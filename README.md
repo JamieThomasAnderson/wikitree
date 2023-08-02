@@ -6,7 +6,7 @@ The graph is filled by beginning with a starting link. The backend parses pages 
 ![image](https://github.com/JamieThomasAnderson/wikitree/assets/96888832/9584833d-ec99-4734-b470-07b63474e585)
 ![image](https://github.com/JamieThomasAnderson/wikitree/assets/96888832/cd01c594-b5f8-403c-9380-20caa6f0afb4)
 
-# Setup **needs update**
+# Setup _needs updating_
 
 Download & Install  
  - [Node.js](https://nodejs.org/en) (Version 18 or above)
